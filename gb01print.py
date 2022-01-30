@@ -111,7 +111,7 @@ def detect_printer(detected, advertisement_data):
         cut_addr = detected.address.replace(":", "")[-(len(address)):].upper()
         if cut_addr != address:
             return
-    if detected.name == 'GB01':
+    if detected.name == 'GB02':
         device = detected
 
 
@@ -300,6 +300,7 @@ if args.scale_feed:
 print_data = request_status()
 if not args.eject:
     image = PIL.Image.open(args.filename)
+    image = image.rotate(180)
     print_data = print_data + render_image(image)
 if not args.no_eject:
     print_data = print_data + blank_paper(feed_lines)
